@@ -1,16 +1,8 @@
 language: python
 python:
 - '3.8'
-services:
-- postgresql
-addons:
-  postgresql: '9.6'
 install:
 - pip install -r requirements.txt
-before_script:
-- psql --version
-- psql -c 'create database yourdatabase_test;' -U postgres
-- python manage.py db upgrade
 script:
 - pytest
 deploy:
@@ -24,4 +16,3 @@ deploy:
   skip_cleanup: 'true'
   run:
     - pip install -r requirements.txt
-    - python manage.py db upgrade
