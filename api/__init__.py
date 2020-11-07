@@ -5,7 +5,7 @@ from flask import Flask, jsonify
 from werkzeug.exceptions import HTTPException
 from config import config
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 
 class ExtendedAPI(Api):
@@ -47,9 +47,6 @@ def create_app(config_name='default'):
 
     # use our 'config_name' to set up our config.py settings
     app.config.from_object(config[config_name])
-
-    # set up our database
-    db.init_app(app)
 
     # set up CORS
     CORS(app, resources={r"/*": {"origins": "*"}})

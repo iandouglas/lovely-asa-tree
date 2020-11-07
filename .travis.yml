@@ -16,10 +16,10 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure:
-  app: your-heroku-app-name
+    secure: h4JOE+H0d37NPf7dk3XVsTY8haqcJwOdT4F4lS6X0YesGb+LdtBs809+qpIeUZxVZ8MN+p9DkTkW7+fWBUQYqnqBgwy8eXXO93bY+PlSKXxKzEHMDnGbF63mi79Y1CnDO9RR+tgN9yjV+615Ontplm+JYrqxbjwW9NBH8P7jv4YLzqKKnr4x+5JItcdEOBj32tiXQyRrT3iMVwNXZ0BgaL9XWSQa1b91wMYsXKDwWac8TaoLgR3CLrNCrsMjJhbEfOaaDu1FQI3MIGf66GhgEx+t03jBzaTnCCAyuDfrvl0ya6RblUyB74otiBCaH4Bmro1XjWe0bosZBqDgGpLNK8tQmtm+2PAf9o0e1zlD18StKzh6ilkZG1HJwrDw3L7rV2XdmY0UftGj/v+BHeO2+Ppi+zluMs1jO9TgMq4FjyyOsO+XVvoHwW5m1JUZZvsQ5VTVFLQS6GkOgBDVtueT02zgzZ6nC/Wrx7T2KuKXckHtIWJ/HmHtOgTYSGAWFO8HSK9SPit1Nt4shT5DwxoHVWZP6sJvDk5KrjGiqAgVXHaOp3T0HCXZEzU+xE0aO4lBqdY0DMZRVPkc0qkNolfgP6PHyoWntwmx+dj7k+pS+lH2s4RKPGaokQ3qhRX85cUUi/fAQMpA0bLcV/VGe6dEMGTXp8dvZ7fqow7uPqtA1uM=
+  app: lovely-asa-tree
   on:
-    repo: githubu_sername/repo_name
+    repo: iandouglas/lovely-asa-tree
     branch: main
   skip_cleanup: 'true'
   run:

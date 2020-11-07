@@ -6,9 +6,6 @@ from flask import request
 from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
-from api import db
-from api.database.models import User
-
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
     if field in data:
@@ -174,40 +171,43 @@ class TreesResource(Resource):
     a resource ID in the URI path
     """
     def get(self, *args, **kwargs):
-        return TREES, 200
+        return {
+            'success': True,
+            'trees': TREES
+        }, 200
 
-    def post(self, *args, **kwargs):
-        user, errors = self._create_user(json.loads(request.data))
-        if user is not None:
-            user_payload = _user_payload(user)
-            user_payload['success'] = True
-            return user_payload, 201
-        else:
-            return {
-                'success': False,
-                'error': 400,
-                'errors': errors
-            }, 400
-
-
-        proceed, username, errors = _validate_field(
-            data, 'username', proceed, errors, missing_okay=True)
-        proceed, email, errors = _validate_field(
-            data, 'email', proceed, errors, missing_okay=True)
-
-        if not proceed:
-            return {
-                'success': False,
-                'error': 400,
-                'errors': errors
-            }, 400
-
-        if username and len(username.strip()) > 0:
-            user.username = username
-        if email:
-            user.email = email
-        user.update()
-
-        user_payload = _user_payload(user)
-        user_payload['success'] = True
-        return user_payload, 200
+    # def post(self, *args, **kwargs):
+    #     user, errors = self._create_user(json.loads(request.data))
+    #     if user is not None:
+    #         user_payload = _user_payload(user)
+    #         user_payload['success'] = True
+    #         return user_payload, 201
+    #     else:
+    #         return {
+    #             'success': False,
+    #             'error': 400,
+    #             'errors': errors
+    #         }, 400
+    #
+    #
+    #     proceed, username, errors = _validate_field(
+    #         data, 'username', proceed, errors, missing_okay=True)
+    #     proceed, email, errors = _validate_field(
+    #         data, 'email', proceed, errors, missing_okay=True)
+    #
+    #     if not proceed:
+    #         return {
+    #             'success': False,
+    #             'error': 400,
+    #             'errors': errors
+    #         }, 400
+    #
+    #     if username and len(username.strip()) > 0:
+    #         user.username = username
+    #     if email:
+    #         user.email = email
+    #     user.update()
+    #
+    #     user_payload = _user_payload(user)
+    #     user_payload['success'] = True
+    #     return user_payload, 200
