@@ -1,3 +1,5 @@
+import traceback
+
 from flask_cors import CORS
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
@@ -20,6 +22,7 @@ class ExtendedAPI(Api):
         """
         # log every exception raised in the application
         print('we ended up in the API handle_error()', err, err.__class__)
+        print(traceback.format_exc(5))
 
         # catch other HTTP errors
         if isinstance(err, HTTPException):
@@ -75,8 +78,9 @@ def create_app(config_name='default'):
             "message": "resource not found"
         }), 404
 
-    from api.resources.trees import TreesResource
+    from api.resources.trees import TreesResource, WhichTreeResource
 
     api.add_resource(TreesResource, '/api/v1/trees')
+    api.add_resource(WhichTreeResource, '/api/v1/trees/which-am-i')
 
     return app

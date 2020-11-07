@@ -26,18 +26,26 @@ class GetAllTreesTest(GetTreesTest):
 
         data = json.loads(response.data.decode('utf-8'))
         assert_payload_field_type_value(self, data, 'success', bool, True)
-        assert_payload_field_type(self, data, 'trees', dict)
-        assert_payload_field_type(self, data['trees'], 'Ellcrys', dict)
+        assert_payload_field_type_value(self, data, 'count', int, 25)
+        assert_payload_field_type(self, data, 'trees', list)
 
         results = data['trees']
 
-        next_result = results['Ellcrys']
+        next_result = results[0]
         assert_payload_field_type_value(
-            self, next_result, 'name', str, 'Ellcrys, "The Shannara Chronicles"'
+            self, next_result, 'name', str,
+            'Ellcrys, "The Shannara Chronicles"'
         )
         assert_payload_field_type_value(
-            self, next_result, 'description', str, 'Telepathic, magical elf trees are always pretty rad, but poor Ellcrys tends to get completely overshadowed by all the other white trees in fantasy pop culture, of which there are many.'
+            self, next_result, 'description', str,
+            'Telepathic, magical elf trees are always pretty rad, but poor '
+            'Ellcrys tends to get completely overshadowed by all the other '
+            'white trees in fantasy pop culture, of which there are many.'
         )
         assert_payload_field_type_value(
-            self, next_result, 'image_url', str, 'https://ugc.reveliststatic.com/gen/full/2016/04/27/14/9j/7l/pogmddl0ws39.gif'
+            self, next_result, 'image_url', str,
+            'https://ugc.reveliststatic.com/gen/full/2016/04/27/14/9j/7l/'
+            'pogmddl0ws39.gif'
         )
+
+
